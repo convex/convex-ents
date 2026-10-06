@@ -1,3 +1,9 @@
+# 0.20.1
+
+Fixes performance when replacing large many:many edge lists. `replace` now
+fetches existing edges once and skips redundant existence checks for individual
+edges.
+
 # 0.20.0
 
 It's now possible to retrieve only the IDs of the ents on the other side of a
