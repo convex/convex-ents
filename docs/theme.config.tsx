@@ -5,7 +5,7 @@ import { Details, Summary } from "./components/details";
 const config: DocsThemeConfig = {
   logo: <span style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Ents</span>,
   project: {
-    link: "https://github.com/get-convex/convex-ents",
+    link: "https://github.com/convex/convex-ents",
   },
   chat: {
     link: "https://www.convex.dev/community",
@@ -33,7 +33,7 @@ const config: DocsThemeConfig = {
     );
   },
   docsRepositoryBase:
-    "https://github.com/get-convex/convex-ents/tree/main/docs",
+    "https://github.com/convex/convex-ents/tree/main/docs",
   gitTimestamp() {
     return <></>;
   },
