@@ -244,6 +244,32 @@ returned by `ctx.table`:
   read will be filtered out.
   - except for `getManyX`, which will throw an `Error`
 
+### Read rules and edge traversal
+
+When you chain `.edge()` or `.edgeX()` directly onto a query, read rules are
+checked for the ents returned at the end of the chain. The read rules of
+intermediate ents are not checked, even if you use `getX`:
+
+```ts
+// Throws if the project's read rule returns false.
+await ctx.table("projects").getX(projectId);
+
+// Can return tasks even if the project's read rule returns false.
+// The tasks' read rules are still applied.
+await ctx.table("projects").getX(projectId).edge("tasks");
+```
+
+To require that the project is readable before traversing its edges, await it
+first:
+
+```ts
+const project = await ctx.table("projects").getX(projectId);
+const tasks = await project.edge("tasks");
+```
+
+If task access should always depend on project access, enforce that dependency
+in the tasks' read rule as well.
+
 ### Understanding read rules performance
 
 A read rule is essentially a filter, performed in the Convex runtime running
