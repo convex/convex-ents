@@ -56,3 +56,33 @@ export function myWriteHelper(ctx: MutationCtx, task: EntWriter<"tasks">) {
   /* ... */
 }
 ```
+
+## `replace` and `patch` value types
+
+To type a helper that takes the value passed to an ent's `replace` or `patch`
+method, add these aliases next to `Ent` and `EntWriter`:
+
+```ts filename="convex/types.ts"
+import { GenericEntPatchValue, GenericEntReplaceValue } from "convex-ents";
+
+export type EntReplaceValue<TableName extends TableNames> =
+  GenericEntReplaceValue<typeof entDefinitions, TableName>;
+export type EntPatchValue<TableName extends TableNames> = GenericEntPatchValue<
+  typeof entDefinitions,
+  TableName
+>;
+```
+
+These include the ent's edges, for example the IDs of a many:many edge for
+`replace`, or the `{ add, remove }` changes for `patch`:
+
+```ts filename=convex/myFunctions.ts
+import { EntPatchValue, EntWriter } from "./types";
+
+export function myPatchHelper(
+  task: EntWriter<"tasks">,
+  value: EntPatchValue<"tasks">,
+) {
+  return task.patch(value);
+}
+```

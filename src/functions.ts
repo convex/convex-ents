@@ -2886,14 +2886,7 @@ export interface PromiseEntWriter<
    * specifies system fields like `_id`, they must match the document's existing field values.
    */
   patch(
-    value: Partial<
-      Expand<
-        WithEdgePatches<
-          DocumentByName<EntsDataModel, Table>,
-          EntsDataModel[Table]["edges"]
-        >
-      >
-    >,
+    value: GenericEntPatchValue<EntsDataModel, Table>,
   ): PromiseEntId<EntsDataModel, Table>;
 
   /**
@@ -2903,14 +2896,7 @@ export interface PromiseEntWriter<
    * and the database will preserve them in.
    */
   replace(
-    value: Expand<
-      WithOptionalSystemFields<
-        WithEdges<
-          DocumentByName<EntsDataModel, Table>,
-          EntsDataModel[Table]["edges"]
-        >
-      >
-    >,
+    value: GenericEntReplaceValue<EntsDataModel, Table>,
   ): PromiseEntId<EntsDataModel, Table>;
 
   /**
@@ -3190,12 +3176,7 @@ declare class EntWriterInstance<
    * specifies system fields like `_id`, they must match the document's existing field values.
    */
   patch(
-    value: Partial<
-      WithEdgePatches<
-        DocumentByName<EntsDataModel, Table>,
-        EntsDataModel[Table]["edges"]
-      >
-    >,
+    value: GenericEntPatchValue<EntsDataModel, Table>,
   ): PromiseEntId<EntsDataModel, Table>;
 
   /**
@@ -3205,12 +3186,7 @@ declare class EntWriterInstance<
    * and the database will preserve them in.
    */
   replace(
-    value: WithOptionalSystemFields<
-      WithEdges<
-        DocumentByName<EntsDataModel, Table>,
-        EntsDataModel[Table]["edges"]
-      >
-    >,
+    value: GenericEntReplaceValue<EntsDataModel, Table>,
   ): PromiseEntId<EntsDataModel, Table>;
 
   /**
@@ -3235,6 +3211,36 @@ export type GenericEntWriter<
   EntsDataModel extends GenericEntsDataModel,
   Table extends TableNamesInDataModel<EntsDataModel>,
 > = EntWriter<Table, DocumentByName<EntsDataModel, Table>, EntsDataModel>;
+
+/**
+ * The type of the value accepted by `replace()` on an ent of the given table.
+ */
+export type GenericEntReplaceValue<
+  EntsDataModel extends GenericEntsDataModel,
+  Table extends TableNamesInDataModel<EntsDataModel>,
+> = Expand<
+  WithOptionalSystemFields<
+    WithEdges<
+      DocumentByName<EntsDataModel, Table>,
+      EntsDataModel[Table]["edges"]
+    >
+  >
+>;
+
+/**
+ * The type of the value accepted by `patch()` on an ent of the given table.
+ */
+export type GenericEntPatchValue<
+  EntsDataModel extends GenericEntsDataModel,
+  Table extends TableNamesInDataModel<EntsDataModel>,
+> = Partial<
+  Expand<
+    WithEdgePatches<
+      DocumentByName<EntsDataModel, Table>,
+      EntsDataModel[Table]["edges"]
+    >
+  >
+>;
 
 export interface PromiseEntId<
   EntsDataModel extends GenericEntsDataModel,
