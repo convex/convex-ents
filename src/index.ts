@@ -11,6 +11,8 @@ export { scheduledDeleteFactory } from "./deletion";
 export type {
   GenericEnt,
   GenericEntWriter,
+  GenericEntReplaceValue,
+  GenericEntPatchValue,
   PromiseOrderedQueryOrNull,
   PromiseQueryOrNull,
   PromiseTableBase,
