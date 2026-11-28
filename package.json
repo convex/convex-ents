@@ -34,16 +34,16 @@
     "convex": "^1.31.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.39.1",
-    "@types/node": "^26.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.47.0",
-    "convex-helpers": "^0.1.128",
-    "eslint": "^9.39.1",
-    "globals": "^17.0.0",
-    "npm-run-all2": "^9.0.0",
-    "prettier": "^3.8.1",
-    "tsup": "^9.0.0",
-    "typescript": "^5.4.0"
+    "@eslint/eslintrc": "3.3.1",
+    "@eslint/js": "9.39.1",
+    "@types/node": "26.6.6",
+    "@typescript-eslint/eslint-plugin": "8.47.0",
+    "convex-helpers": "0.1.128",
+    "eslint": "9.39.1",
+    "globals": "17.14.0",
+    "npm-run-all2": "9.0.4",
+    "prettier": "3.8.1",
+    "tsup": "9.0.0",
+    "typescript": "5.9.3"
   }
 }
